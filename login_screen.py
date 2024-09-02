@@ -1,8 +1,10 @@
-from kivy.properties import StringProperty
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivymd.uix.card import MDCard
 from kivymd.uix.behaviors import HoverBehavior
+from kivy.properties import StringProperty
+
+
 Builder.load_string(
     """
 <LoginScreen>:
@@ -12,7 +14,6 @@ Builder.load_string(
         size_hint_y:None
         spacing:'15dp'
         padding:'15dp'
-        
         MDLabel:
             bold:True
             pos_hint:{"center_x": .5}
@@ -22,7 +23,6 @@ Builder.load_string(
             allow_selection: True
             allow_copy: True
             font_size: "48dp"
-        
         MDCard:
             orientation:'vertical'
             radius:15
@@ -30,17 +30,13 @@ Builder.load_string(
             spacing:'30dp'
             adaptive_height:True
             pos_hint:{'center_x':.5, 'center_y':.5}
+
+
             MDTextField:
-                id: email
-                validator: "email"
-                email_format: "example@example.com"              
+                id: username
                 MDTextFieldHintText:
-                    text: "Email:"
-
-                MDTextFieldHelperText:
-                    text: "example@example.com"
-                    mode: "on_error"
-
+                    text: "Username:"
+                    pos_hint:{'center_y':.2}
             MDTextField:
                 id: passw
                 password: True
@@ -52,32 +48,31 @@ Builder.load_string(
                 height: "30dp"
                 pos_hint: {"center_x":.5}
                 spacing: "5dp"
-                MDCheckbox:
-                    id:cd
-                    size_hint: None, None
-                    width:"30dp"
-                    height: "30dp"
-                    pos_hint: {"center_x":.5}
-                    on_press:
-                        passw.password = False if passw.password == True else True
-                        
-                MDLabel:
-                    text: "[ref=Show Password]Show Password[/ref]"
-                    markup: True
-                    pos_hint: cd.pos_hint
-                    on_ref_press:
-                        cd.active = False if cd.active == True else True
-                        passw.password = False if passw.password == True else True
+            MDCheckbox:
+                id:cd
+                size_hint: None, None
+                width:"60dp"
+                height: "30dp"
+                pos_hint: {"center_x":.8}
+                on_press:
+                    passw.password = False if passw.password == True else True
+
+            MDLabel:
+                text: "[ref=Show Password]Show Password[/ref]"
+                markup: True
+                pos_hint: cd.pos_hint
+                on_ref_press:
+                    cd.active = False if cd.active == True else True
+                    passw.password = False if passw.password == True else True
             MDCard:
-                id: forgot_password
                 spacing: "5dp"
                 padding: "15dp"
                 pos_hint:{"center_x": .5}
                 ripple_behavior:True
                 height: "40dp"
                 radius: '5dp'
+                on_press: app.change_screen('forgot1')
                 size_hint_y: None
-                on_release: app.change_screen('forgot_password')
                 MDIcon:
                     icon:"register"
                     pos_hint:{"center_x": .5, "center_y": .5}
@@ -94,14 +89,12 @@ Builder.load_string(
             MDButton:
                 pos_hint: {"center_x":.5}
                 size_hint_y: None
-                radius: "4dp"
                 on_press: app.change_screen('home')
+                radius:"4dp"
                 MDButtonText:
-                    text: "Sign In"
+                    text:"Sign In"
                 MDButtonIcon:
-                    icon: "login"
-
-            
+                    icon:"login"
             MDLabel:
                 bold:True
                 pos_hint:{"center_x": .5}
@@ -157,7 +150,7 @@ Builder.load_string(
                     allow_selection: True
                     allow_copy: True
                     font_size: "48dp"
-                             
+
 <TextIconButton>:
     spacing: "5dp"
     ripple_behavior:True
@@ -166,7 +159,7 @@ Builder.load_string(
     adaptive_width: True
     height: "30dp"
     radius: '4dp'
-    
+
     MDBoxLayout:
         adaptive_width: True
         size_hint: .85, None
@@ -179,11 +172,11 @@ Builder.load_string(
             theme_bg_color: "Custom"
             fill_color_focus: 1,1,0,1
         MDLabel:
-            text: root.text 
-            pos_hint: {"center_x":.5, "center_y":.5} 
+            text: root.text
+            pos_hint: {"center_x":.5, "center_y":.5}
             theme_text_color:'Custom'
-            text_color:"white"    
-    
+            text_color:"white"
+
 <TextFlatButton>
     spacing: "5dp"
     ripple_behavior:True
@@ -192,8 +185,8 @@ Builder.load_string(
     radius: '4dp'
     MDLabel:
         markup: True
-        text: root.text 
-        pos_hint: {"center_x":.8, "center_y":.5} 
+        text: root.text
+        pos_hint: {"center_x":.8, "center_y":.5}
     """
 )
 
