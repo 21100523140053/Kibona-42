@@ -3,7 +3,7 @@ from kivy.lang.builder import Builder
 
 
 Builder.load_string(
-"""
+   """
 <SellerRegister>:
     name: 'seller_register'
     MDLabel:
@@ -27,28 +27,28 @@ Builder.load_string(
             adaptive_height:True
             pos_hint:{'center_x':.5,}
             MDTextField:
-                id: username             
+                id: username
                 MDTextFieldHintText:
                     text: "Username:"
             MDTextField:
-                id: location             
+                id: location
                 MDTextFieldHintText:
                     text: "Location:"
             MDTextField:
                 id: email
                 validator: "email"
-                email_format: "example@example.com"              
+                email_format: "example@example.com"
                 MDTextFieldHintText:
                     text: "Email:"
                 MDTextFieldHelperText:
                     text: "example@example.com"
                     mode: "on_error"
             MDTextField:
-                id: phone_number             
+                id: phone_number
                 MDTextFieldHintText:
                     text: "Phone Number:"
             MDTextField:
-                id: tra_reg             
+                id: tra_reg
                 MDTextFieldHintText:
                     text: "TRA Registration:"
 
@@ -77,7 +77,8 @@ Builder.load_string(
                     on_press:
                         passw.password = False if passw.password == True else True
                         passw1.password = False if passw1.password == True else True
-                        
+
+
                 MDLabel:
                     text: "[ref=Show Password]Show Password[/ref]"
                     markup: True
@@ -86,12 +87,14 @@ Builder.load_string(
                         cd.active = False if cd.active == True else True
                         passw.password = False if passw.password == True else True
                         passw1.password = False if passw1.password == True else True
-            TextIconButton:
-                icon:'login'
-                text: "Sign Up"
+            MDButton:
                 pos_hint: {"center_x":.5}
                 size_hint_y: None
-                on_press: app.change_screen('login')
+                radius:"4dp"
+                MDButtonText:
+                    text:"Sign Up"
+                MDButtonIcon:
+                    icon:"login"
             MDCard:
                 spacing: "5dp"
                 padding: "15dp"
@@ -116,6 +119,7 @@ Builder.load_string(
                     font_size: "48dp"
 """
 )
+
 
 class SellerRegister(Screen):
     pass
